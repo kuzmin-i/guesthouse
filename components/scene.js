@@ -1,7 +1,7 @@
 import React, { useRef, useState, Suspense, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber' 
 
-import { PerspectiveCamera, OrbitControls, Plane, Box, softShadows} from '@react-three/drei'
+import { PerspectiveCamera, OrbitControls, Box, Html} from '@react-three/drei'
 
 import ModelGLTF from './gltf'
 
@@ -62,9 +62,19 @@ const Scene = ({data}) => {
             />
             {dirHelpLight && <directionalLightHelper args={[dirHelpLight, 5]} />}
             
+            
             <Box castShadow ref={myCube} receiveShadow  position={[data.cubeX, data.cubeY, data.cubeZ]} scale={[20, 20, 20]}>
                 <meshStandardMaterial attach="material" color="white" />
             </Box>
+
+            <Html
+                as="div"
+                position={[data.cubeX + 20, data.cubeY + 20, data.cubeZ]}
+                occlude
+                center
+            >
+                <div className="gl-pin">+</div>
+            </Html>
 
             
             
@@ -72,6 +82,7 @@ const Scene = ({data}) => {
                 <ModelGLTF model="/1/Ground_1.glb" receiveShadow/>
                 <ModelGLTF model="/1/Platform.glb"/>
                 <ModelGLTF model="/1/Walls.glb"/>
+                <ModelGLTF model="/1/Partitions.glb"/>
                 <ModelGLTF model="/1/Roof.glb"/>
             </Suspense>
 

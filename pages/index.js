@@ -18,7 +18,7 @@ export default function Home() {
     dIntensity: 1.5,
     cubeX: 100,
     cubeY: 15,
-    cubeZ: -55,
+    cubeZ: 3,
     focusDistance: 0,
     focalLength: .02,
     bokehScale: 2,
