@@ -1,0 +1,16 @@
+.screens__btn {
+    width: 200px;
+    margin-top: 24px;
+    padding: 14px 30px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.screens__btn:hover {
+    background-color: #eee;
+    cursor: pointer
+}

@@ -1,0 +1,14 @@
+@import './block/screens__block.css';
+@import './title/screens__title.css';
+@import './content/screens__content.css';
+@import './btn/screens__btn.css';
+
+.screens {
+    position: relative;
+    width: 35vw;
+    height: 100vh;
+    max-width: 510px;
+    min-width: 400px;
+    padding-left: 60px;
+    z-index: 5000;
+}
