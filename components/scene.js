@@ -6,7 +6,7 @@ import { PerspectiveCamera, OrbitControls, FlyControls, Box, Line} from '@react-
 import * as THREE from 'three';
 
 /* Three JS extra components */
-import Pin from './ThreeBlocks/Pin'
+//import Pin from './ThreeBlocks/Pin'
 import ModelGLTF from './ThreeBlocks/ModelGLTF'
 import Lights from './ThreeBlocks/Lights'
 import ExplosionGroup from './ThreeBlocks/ExplosionGroup'
@@ -32,10 +32,7 @@ const Scene = ({data, cameraLoc, refs, response}) => {
             <Lights data={data}/>
             
             
-            <Pin position={ [149, 18, -40] } name="Узел углового окна" />
-            <Pin position={ [33, 37, -84] } name="Узел спального окна" />
-
-            <Pin position={ [0, 0, 0] } name={ () => LocPosition() } />
+            
             
             <Suspense fallback={null}>
                 <ModelGLTF model="/1/Ground_1.glb" receiveShadow/>
@@ -68,3 +65,10 @@ Camera Pos2 = [256.2366685896037, 112.19251084415639, 75.41435492681605]
 Camera Rot2 = [-0.3462307333686365, 0.8841013859965784, 0.2720759213944849]
 
 */
+
+/*
+<Pin position={ [149, 18, -40] } name="Узел углового окна" />
+            <Pin position={ [33, 37, -84] } name="Узел спального окна" />
+
+            <Pin position={ [0, 0, 0] } name={ () => LocPosition() } />
+        */
