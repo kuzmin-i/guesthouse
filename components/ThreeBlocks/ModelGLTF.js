@@ -25,8 +25,8 @@ const ModelGLTF = React.forwardRef(({model, action, ...props}, ref) => {
         receiveShadow
         castShadow
         geometry={nodes[MeshName[1]].geometry}
-        onPointerOver={ () => console.log('in') }
-        onPointerLeave={ () => console.log('out') }
+        onPointerOver={ () => true }
+        onPointerLeave={ () => true }
         rotation={[Math.PI / 2, 0, 0]}
         scale={0.01}
       >

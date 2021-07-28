@@ -18,21 +18,11 @@ import CountPosDifference from '../components/Functions/CountPosDifference'
 
 export default function Home() {
 
-
-  const CameraAnimCoord = [
-    {'position': [-11.153876556792174, 15.227648229652257, 64.68251686733406], 'rotation': [0.018932006244514115, -0.47663570975845293, 0.00868668108726853]},
-    {'position': [256.2366685896037, 112.19251084415639, 75.41435492681605], 'rotation': [-0.3462307333686365, 0.8841013859965784, 0.2720759213944849]}
-  ]
-
-  const [CameraLoc, setCameraLoc] = useState(CameraAnimCoord[0])
-  const [CamInterval, setCamInterval] = useState(false)
-  const [GoStart, setGoStart] = useState(false)
-
   
 
   const [data, setData] = useState({
-    positionX: -19,
-    positionY: 58.327,
+    positionX: 56,
+    positionY: 131,
     positionZ: 281,
     cubeX: 100,
     cubeY: 15,
@@ -61,59 +51,27 @@ export default function Home() {
 
   const explosionBtnRef = useRef()
 
+  const [TResponse, setTResponse] = useState(null)
+
   useEffect(() => {
     const scroller = scrollama();
 
     scroller
       .setup({
         step: ".screens__block",
+        progress: true,
+        offset: 0
       })
-      .onStepEnter((response) => {
+      .onStepEnter((_response) => {
         // { element, index, direction }
       })
-      .onStepProgress((response) => {
+      .onStepProgress((_response) => {
         // { element, index, direction }
+        
       })
-      .onStepExit((response) => {
+      .onStepExit((_response) => {
         // { element, index, direction }
-
-        console.log(response)
-        if(response.index == 0 && !CamInterval && response.direction == 'down') {
-          console.log(response)
-          setCamInterval(true)
-
-          let progress = 0
-          let step = .02
-
-          useFrame(() => {
-            if(GoStart) {
-              const crvProgress = 1 - Math.cos((progress * Math.PI) / 2) 
-              
-              if(progress < 1 && response.direction == 'down') {
-                progress += step
-              } else {
-                setGoStart(true)
-                setCamInterval(false)
-              }
-
-              const Vector3Loc = {
-                'position': CountPosDifference(CameraAnimCoord[response.index].position, CameraAnimCoord[response.index+1].position),
-                'rotation': CountPosDifference(CameraAnimCoord[response.index].rotation, CameraAnimCoord[response.index+1].rotation)
-              }
-
-              const CountMovement = (PosOrRot, i) => {
-                return CameraAnimCoord[response.index][PosOrRot][i] + Vector3Loc[PosOrRot][i] * crvProgress
-              }
-
-              const V3Pos = [CountMovement('position', 0), CountMovement('position', 1), CountMovement('position', 2)]
-              const V3Rot = [CountMovement('rotation', 0), CountMovement('rotation', 1), CountMovement('rotation', 2)]
-
-              const CameraLocUpd = {'position': V3Pos, 'rotation': V3Rot}
-
-              setCameraLoc(CameraLocUpd)
-            }
-          })
-        }
+        
        
       })
 
@@ -137,9 +95,9 @@ export default function Home() {
 
         
       </DatGui>
-    <div style={{width: '100vw', height: '100vh'}}>
+    <div style={{width: '100vw', height: '100vh', backgroundColor: '#C2D1BE'}}>
     
-      <Scene data={data} cameraLoc={CameraLoc} refs={{'explosion': explosionBtnRef}}/>
+      <Scene data={data} refs={{'explosion': explosionBtnRef}} response={TResponse}/>
 
       <div className="screens">
         <div className="screens__block" data-step="a">
