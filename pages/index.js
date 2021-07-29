@@ -86,12 +86,6 @@ export default function Home() {
         <DatNumber path='positionX' label='positionX' min={-4000} max={4000} step={1} />
         <DatNumber path='positionY' label='positionY' min={-4000} max={4000} step={1} />
         <DatNumber path='positionZ' label='positionZ' min={-4000} max={4000} step={1} />
-        <DatNumber path='cameraPX' label='cameraPX' min={-4000} max={4000} step={1} />
-        <DatNumber path='cameraPY' label='cameraPY' min={-4000} max={4000} step={1} />
-        <DatNumber path='cameraPZ' label='cameraPZ' min={-4000} max={4000} step={1} />
-        <DatNumber path='cameraRX' label='cameraRX' min={-4000} max={4000} step={1} />
-        <DatNumber path='cameraRY' label='cameraRY' min={-4000} max={4000} step={1} />
-        <DatNumber path='cameraRZ' label='cameraRZ' min={-4000} max={4000} step={1} />
 
         
       </DatGui>

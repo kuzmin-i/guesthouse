@@ -41,7 +41,7 @@ const Lights = ({data}) => {
             {dirHelpLight && <directionalLightHelper args={[dirHelpLight, 5]} />}
             
             
-            <Box castShadow ref={myCube} receiveShadow  position={[data.cubeX, data.cubeY, data.cubeZ]} scale={[3, 3, 3]}>
+            <Box castShadow ref={myCube} receiveShadow  position={[data.cubeX, data.cubeY, data.cubeZ]} scale={[1, 1, 1]}>
                 <meshStandardMaterial attach="material" color="white"  />
             </Box>
 
