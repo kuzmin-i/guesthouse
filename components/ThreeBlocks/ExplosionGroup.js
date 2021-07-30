@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { Line } from '@react-three/drei'
 
 /* Three JS extra components */
-import Pin from '../ThreeBlocks/Pin'
+//import Pin from '../ThreeBlocks/Pin'
 import ModelGLTF from '../ThreeBlocks/ModelGLTF'
 import BRoof from '../ThreeBlocks/BRoof'
 import BUnderfloor from '../ThreeBlocks/BUnderfloor'
@@ -112,16 +112,17 @@ const ExplosionGroup = () => {
                 <BUnderfloor ref={GLTFRefs.underfloor}/>
                 <ModelGLTF model="/1/Stairs.glb" ref={GLTFRefs.stairs}/>
 
-                <Pin position={ [136, 14, -69] } name="Столовая" ref={HtmlRefs.pin2}/>
+                {/*<Pin position={ [136, 14, -69] } name="Столовая" ref={HtmlRefs.pin2}/>
                 <Pin position={ [46, 37, -79] } name="Спальная комната" ref={HtmlRefs.pin3} />
                 <Pin position={ [74, 33, -54] } name="Спальная комната" />
+                */}
                 
             </group>
             
             <group ref={GroupRefs.group2}>
                 
                 <BRoof ref={GLTFRefs.roof}/>
-                <Pin position={ [123, 39, -25] } name="Узел кровли" ref={HtmlRefs.pin1} />
+               { /*<Pin position={ [123, 39, -25] } name="Узел кровли" ref={HtmlRefs.pin1} />*/}
             </group>
 
             <Line
