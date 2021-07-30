@@ -13,19 +13,26 @@ import {
   } from "three";
 
 /* Three JS extra components */
-import Pin from './ThreeBlocks/Pin'
+//import Pin from './ThreeBlocks/Pin'
 import ModelGLTF from './ThreeBlocks/ModelGLTF'
 import Lights from './ThreeBlocks/Lights'
 import ExplosionGroup from './ThreeBlocks/ExplosionGroup'
 import Cameras from './ThreeBlocks/Cameras'
 
-/* Extra Functions */
-import Rad3 from './Functions/Rad3'
-import ToRefsObject from './Functions/ToRefsObject'
-import BWalls from './ThreeBlocks/BWalls_1';
+import BWalls from './ThreeBlocks/BWalls_1'
 import BDoorFrame from './ThreeBlocks/BDoorFrame'
 import BDoorBlock from './ThreeBlocks/BDoorBlock'
 import BWindowsBlock1 from './ThreeBlocks/BWindowsBlock1'
+import BPlatform from './ThreeBlocks/BPlatform'
+import BGround from './ThreeBlocks/BGround'
+import BMan from './ThreeBlocks/BMan'
+
+import Effects from './ThreeBlocks/Effects'
+
+/* Extra Functions */
+import Rad3 from './Functions/Rad3'
+import ToRefsObject from './Functions/ToRefsObject'
+import BCube1 from './ThreeBlocks/BCube1';
 
 function SkyBox() {
     const { scene } = useThree();
@@ -84,21 +91,18 @@ const Scene = ({data, cameraLoc, refs, response}) => {
 
     const envProps = {background: false}
 
-    
+    const AltCamera = useRef()    
 
 
     return(
         <>
         <Canvas className="map" shadows colorManagement>
             <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
-            <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} response={response}/>
+            <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} response={response} ref={AltCamera}/>
 
             <Lights data={data}/>
             
-            <Pin position={ [149, 18, -40] } name="Узел углового окна" />
-            <Pin position={ [33, 37, -84] } name="Узел спального окна" />
-
-            <Pin position={ [0, 0, 0] } name={ () => LocPosition() } />
+            
             
             
             
@@ -106,17 +110,21 @@ const Scene = ({data, cameraLoc, refs, response}) => {
 
             <Suspense fallback={null}>
 
-                
+                <Environment background={false} files="/1/textures/adams_place_bridge_1k.hdr" />
                 
                 <SkyBox />
-                <ModelGLTF model="/1/Ground_1.glb" receiveShadow/>
-                <ModelGLTF model="/1/Platform.glb"/>
+                
+                <BPlatform/>
+                <BGround/>
                 <BWalls/>
+                <BMan ref={AltCamera}/>
                 
                 <ModelGLTF model="/1/WindowsFrames.glb"/>
                 <BDoorFrame/>
                 <BDoorBlock/>
                 <BWindowsBlock1/>
+
+                <BCube1/>
 
                 <ExplosionGroup/>
                 
@@ -124,7 +132,7 @@ const Scene = ({data, cameraLoc, refs, response}) => {
                 
             </Suspense>
 
-            
+            <Effects />
 
         
       </Canvas>
@@ -150,3 +158,12 @@ Camera Rot2 = [-0.3462307333686365, 0.8841013859965784, 0.2720759213944849]
 /*
             
         */
+
+//<Environment background={false} files="/1/textures/adams_place_bridge_1k.hdr" />
+
+/*
+<Pin position={ [149, 18, -40] } name="Узел углового окна" />
+            <Pin position={ [33, 37, -84] } name="Узел спального окна" />
+
+            <Pin position={ [0, 0, 0] } name={ () => LocPosition() } />
+            */

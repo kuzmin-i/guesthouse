@@ -8,6 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export default function BWalls(props) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/1/BWalls.gltf')
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>

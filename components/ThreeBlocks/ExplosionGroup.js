@@ -7,6 +7,7 @@ import { Line } from '@react-three/drei'
 import Pin from '../ThreeBlocks/Pin'
 import ModelGLTF from '../ThreeBlocks/ModelGLTF'
 import BRoof from '../ThreeBlocks/BRoof'
+import BUnderfloor from '../ThreeBlocks/BUnderfloor'
 
 /* Extra Functions */
 import ToRefsObject from '../Functions/ToRefsObject'
@@ -108,7 +109,7 @@ const ExplosionGroup = () => {
             <group ref={GroupRefs.group1}>
                 <ModelGLTF model="/1/Partitions.glb" ref={GLTFRefs.partitions}/>
                 <ModelGLTF model="/1/Furniture.glb" ref={GLTFRefs.furniture}/>
-                <ModelGLTF model="/1/Underfloor.glb" ref={GLTFRefs.underfloor}/>
+                <BUnderfloor ref={GLTFRefs.underfloor}/>
                 <ModelGLTF model="/1/Stairs.glb" ref={GLTFRefs.stairs}/>
 
                 <Pin position={ [136, 14, -69] } name="Столовая" ref={HtmlRefs.pin2}/>

@@ -1,4 +1,6 @@
 
+import React from 'react'
+
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber' 
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
@@ -8,7 +10,10 @@ import * as THREE from 'three';
 /* Extra Functions */
 import CountPosDifference from '../Functions/CountPosDifference'
 
-const Cameras = ({OrbitParam, response}) => {
+
+import BMan from './BMan'
+
+const Cameras = React.forwardRef(({OrbitParam, response}, ref) => {
     const myCamera = useRef()
 
     const CameraAnimCoord = [
@@ -21,10 +26,7 @@ const Cameras = ({OrbitParam, response}) => {
         let progress = 0
         let step = .02
 
-        useFrame(() => {
-          console.log('Position: [' + myCamera.current.position.x + ', ' + myCamera.current.position.y + ', ' + myCamera.current.position.z + ']')
-          console.log('Rotation: [' + myCamera.current.rotation.x + ', ' + myCamera.current.rotation.y + ', ' + myCamera.current.rotation.z + ']')
-        })
+        
 
         /*useFrame(() => {
         if(response) {
@@ -57,10 +59,12 @@ const Cameras = ({OrbitParam, response}) => {
 
     return(
         <>
-        <PerspectiveCamera ref={myCamera} position={CameraLoc.position} rotation={ CameraLoc.rotation } makeDefault />
-        {OrbitParam && <OrbitControls camera={myCamera.current} target={new THREE.Vector3(15, 18, 3)} maxDistance={85} />}
+        <PerspectiveCamera ref={ref} position={CameraLoc.position} rotation={ CameraLoc.rotation } makeDefault />
+        {OrbitParam && <OrbitControls camera={ref.current} target={new THREE.Vector3(15, 18, 3)} maxDistance={85} />}
+
+        
         </>
     )
-}
+})
 
 export default Cameras

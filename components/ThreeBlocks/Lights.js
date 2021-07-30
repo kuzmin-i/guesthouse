@@ -30,13 +30,13 @@ const Lights = ({data}) => {
                 ref={dirLight}
                 castShadow
                 position={[data.positionX, data.positionY, data.positionZ]}
-                shadow-mapSize-height={512}
-                shadow-mapSize-width={512}
-                shadow-camera-far={500}
-                shadow-camera-left={-100}
-                shadow-camera-right={100}
-                shadow-camera-top={100}
-                shadow-camera-bottom={-100}
+                shadow-mapSize-height={data.shadowMapSizeHeight}
+                shadow-mapSize-width={data.shadowMapSizeWidth}
+                shadow-camera-far={data.shadowCameraFar}
+                shadow-camera-left={data.shadowCameraLeft}
+                shadow-camera-right={data.shadowCameraRight}
+                shadow-camera-top={data.shadowCameraTop}
+                shadow-camera-bottom={data.shadowCameraBottom}
             />
             {dirHelpLight && <directionalLightHelper args={[dirHelpLight, 5]} />}
             

@@ -45,7 +45,14 @@ export default function Home() {
     cameraPZ: 144.60,
     cameraRX: -16.24,
     cameraRY: -40.54,
-    cameraRZ: -10.73
+    cameraRZ: -10.73,
+    shadowMapSizeHeight: 512,
+    shadowMapSizeWidth: 512,
+    shadowCameraFar: 500,
+    shadowCameraLeft: -100,
+    shadowCameraRight: 100,
+    shadowCameraTop: 100,
+    shadowCameraBottom: -100,
     
   })
 
@@ -83,9 +90,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
     <DatGui data={data} onUpdate={setData}>
-        <DatNumber path='positionX' label='positionX' min={-4000} max={4000} step={1} />
-        <DatNumber path='positionY' label='positionY' min={-4000} max={4000} step={1} />
-        <DatNumber path='positionZ' label='positionZ' min={-4000} max={4000} step={1} />
+        
 
         
       </DatGui>
@@ -93,7 +98,7 @@ export default function Home() {
     
       <Scene data={data} refs={{'explosion': explosionBtnRef}} response={TResponse}/>
 
-      <div className="screens">
+      <div className="screens" style={{display: 'none'}}>
         <div className="screens__block" data-step="a">
           <div className="screens__title">
             Дом с главного ракурса
