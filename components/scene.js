@@ -1,7 +1,7 @@
 import React, { useRef, useState, Suspense, useEffect } from 'react'
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber' 
 
-import { PerspectiveCamera, OrbitControls, FlyControls, Environment, Loader} from '@react-three/drei'
+import { PerspectiveCamera, OrbitControls, FlyControls, Environment, Loader, Html} from '@react-three/drei'
 
 import * as THREE from 'three';
 import {
