@@ -3,9 +3,10 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 510px;
-    max-width: 510px;
+    width: 550px;
+    max-width: 550px;
     padding-left: 60px;
+    padding-right: 60px;
     height: 100vh;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
