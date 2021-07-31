@@ -123,7 +123,7 @@ export default function Home() {
     }
   }} } else { checkBPanelEvent2 = false }
 
-  const WindowHeight = '100vh'
+  let WindowHeight = '100vh'
   let _mobile = false
 
   useEffect(() => {
