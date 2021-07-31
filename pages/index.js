@@ -123,14 +123,22 @@ export default function Home() {
     }
   }} } else { checkBPanelEvent2 = false }
 
+  const WindowHeight = '100vh'
+  let _mobile = false
+
+  useEffect(() => {
+    WindowHeight = window.innerHeight + 'px !important'
+    _mobile = (window.innerWidth) ? true : false
+  })
+
   return (
-    <div className={styles.container}>
+    <div style={{height: WindowHeight, minHeight: WindowHeight}} className={styles.container}>
     <DatGui data={data} onUpdate={setData}>
         
 
         
       </DatGui>
-    <div style={{backgroundColor: '#C2D1BE'}} className={(!displayScreen) ? "layout a" : "layout b"}>
+    <div style={{backgroundColor: '#C2D1BE', height: WindowHeight, minHeight: WindowHeight}} className={(!displayScreen) ? "layout a" : "layout b"}>
     
       <div className="map"><Scene data={data} progressScreen={ progressScreen }/></div>
 
