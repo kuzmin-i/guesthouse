@@ -135,6 +135,9 @@ export default function Home() {
       _el1.current.style.height = window.innerHeight + 'px'
       _el1.current.style.minHeight = window.innerHeight + 'px'
 
+      _el2.current.style.height = window.innerHeight + 'px'
+      _el2.current.style.minHeight = window.innerHeight + 'px'
+
       setWindowHeight(window.innerHeight + 'px !important')
     }
 
