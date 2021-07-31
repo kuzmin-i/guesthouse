@@ -69,16 +69,32 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
 
             <Suspense fallback={null}>
                 <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
+
                 <Html
-                as="div"
-                position={ [149, 18, -40] }
-                occlude
-                center
+                  as="div"
+                  position={ [149, 18, -40] }
+                  occlude
+                  center
                 >
                     <OverlayTrigger
                       placement="right"
                       delay={{ show: 50, hide: 100 }}
-                      overlay={renderTooltip({'name': 'Узел'})}
+                      overlay={renderTooltip({'name': 'Узел углового окна'})}
+                    >
+                      <div className="gl-pin"></div>
+                    </OverlayTrigger>
+                 </Html>
+
+                 <Html
+                  as="div"
+                  position={ [33, 37, -84] }
+                  occlude
+                  center
+                >
+                    <OverlayTrigger
+                      placement="right"
+                      delay={{ show: 50, hide: 100 }}
+                      overlay={renderTooltip({'name': 'Визуализация вида из окна спальной'})}
                     >
                       <div className="gl-pin"></div>
                     </OverlayTrigger>
