@@ -3,6 +3,9 @@ import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
 
 import { PerspectiveCamera, OrbitControls, FlyControls, Environment, Loader, Html} from '@react-three/drei'
 
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
 import * as THREE from 'three';
 import {
     CubeTextureLoader,
@@ -40,6 +43,12 @@ import BCube1 from './ThreeBlocks/BCube1';
 
 const Scene = ({data, cameraLoc, progressScreen}) => {
 
+    const renderTooltip = (props) => (
+      <Tooltip id="button-tooltip" {...props}>
+        {props.name}
+      </Tooltip>
+    );
+
     const [OrbitParam, setOrbitParam] = useState(true)
 
     const envProps = {background: false}
@@ -65,9 +74,15 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
                 position={ [149, 18, -40] }
                 occlude
                 center
-            >
-                    <div className="gl-pin"></div>
-            </Html>
+                >
+                    <OverlayTrigger
+                      placement="right"
+                      delay={{ show: 50, hide: 100 }}
+                      overlay={renderTooltip({'name': 'Узел'})}
+                    >
+                      <div className="gl-pin"></div>
+                    </OverlayTrigger>
+                 </Html>
 
                 <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} ref={AltCamera} progressScreen={progressScreen}/>
                 <SkyBox/>
