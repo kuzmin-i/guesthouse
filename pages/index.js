@@ -100,10 +100,7 @@ export default function Home() {
     setProgressScreen({status: true, section: 'h'})
   }
 
-  useEffect(() => {
-    console.log('Ipd')
-    console.log(progressScreen)
-  })
+  
 
   // Block B Panel
 
@@ -123,11 +120,11 @@ export default function Home() {
     }
   }} } else { checkBPanelEvent2 = false }
 
-  let WindowHeight = '100vh'
+  let [WindowHeight, setWindowHeight] = useState('100vh')
   let _mobile = false
 
   useEffect(() => {
-    WindowHeight = window.innerHeight + 'px !important'
+    setWindowHeight(window.innerHeight + 'px !important')
     _mobile = (window.innerWidth) ? true : false
   })
 
