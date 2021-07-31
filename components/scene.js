@@ -52,7 +52,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
         <Canvas className="map" shadows colorManagement>
             
         
-        
+        <Pin position={ [149, 18, -40] } name="Узел углового окна" />
             
             
       
@@ -60,7 +60,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
 
             <Suspense fallback={null}>
                 <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
-                <Pin position={ [149, 18, -40] } name="Узел углового окна" />
+                
 
                 <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} ref={AltCamera} progressScreen={progressScreen}/>
                 <SkyBox/>
