@@ -129,16 +129,16 @@ export default function Home() {
     _mobile = (window.innerWidth) ? true : false
   })
 
-  console.log('Hey'+ WindowHeight)
+  console.log('Hey' + WindowHeight)
 
   return (
-    <div style={{height: window.innerHeight + 'px', minHeight: window.innerHeight + 'px'}} className={styles.container}>
+    <div style={{height: WindowHeight, minHeight: WindowHeight}} className={styles.container}>
     <DatGui data={data} onUpdate={setData}>
         
 
         
       </DatGui>
-    <div style={{backgroundColor: '#C2D1BE', height: window.innerHeight + 'px', minHeight: window.innerHeight + 'px'}} className={(!displayScreen) ? "layout a" : "layout b"}>
+    <div style={{backgroundColor: '#C2D1BE', height: WindowHeight, minHeight: WindowHeight}} className={(!displayScreen) ? "layout a" : "layout b"}>
     
       <div className="map"><Scene data={data} progressScreen={ progressScreen }/></div>
 
