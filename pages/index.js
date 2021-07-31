@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //Extra Functions
 import CountPosDifference from '../components/Functions/CountPosDifference'
+import { Reflector } from '@react-three/drei'
 
 
 export default function Home() {
@@ -123,22 +124,33 @@ export default function Home() {
   let [WindowHeight, setWindowHeight] = useState('100vh !important')
   let _mobile = false
 
+  const _el1 = useRef()
+  const _el2 = useRef()
+
   useEffect(() => {
     console.log(window.innerHeight)
-    setWindowHeight(window.innerHeight + 'px !important')
+    
+
+    if(window.innerHeight) {
+      _el1.current.style.height = window.innerHeight + 'px'
+      _el1.current.style.minHeight = window.innerHeight + 'px'
+
+      setWindowHeight(window.innerHeight + 'px !important')
+    }
+
     _mobile = (window.innerWidth) ? true : false
   })
 
   console.log('Hey' + WindowHeight)
 
   return (
-    <div style={{height: WindowHeight, minHeight: WindowHeight}} className={styles.container}>
+    <div ref={_el1} style={{height: WindowHeight, minHeight: WindowHeight}} className={styles.container}>
     <DatGui data={data} onUpdate={setData}>
         
 
         
       </DatGui>
-    <div style={{backgroundColor: '#C2D1BE', height: WindowHeight, minHeight: WindowHeight}} className={(!displayScreen) ? "layout a" : "layout b"}>
+    <div ref={_el2} style={{backgroundColor: '#C2D1BE', height: WindowHeight, minHeight: WindowHeight}} className={(!displayScreen) ? "layout a" : "layout b"}>
     
       <div className="map"><Scene data={data} progressScreen={ progressScreen }/></div>
 
