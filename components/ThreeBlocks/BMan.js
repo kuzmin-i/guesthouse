@@ -18,7 +18,9 @@ const BMan = React.forwardRef((props, ref) => {
 
 
   useFrame(() => {
+    if(ref.current) {
     group.current.rotation.y = ref.current.rotation.y
+    }
   })
 
   return (

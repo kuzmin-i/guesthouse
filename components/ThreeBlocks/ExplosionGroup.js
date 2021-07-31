@@ -13,7 +13,7 @@ import BUnderfloor from '../ThreeBlocks/BUnderfloor'
 import ToRefsObject from '../Functions/ToRefsObject'
 import CountPosDifference from '../Functions/CountPosDifference'
 
-const ExplosionGroup = () => {
+const ExplosionGroup = ({progressScreen}) => {
 
     const GLTFPreRefs = ['partitions', 'roof', 'stairs', 'furniture', 'underfloor']
     const GLTFRefs = ToRefsObject(GLTFPreRefs)
@@ -29,17 +29,34 @@ const ExplosionGroup = () => {
 
     const _ExplosionGroup = useRef()
 
-    const [StAnimReverse, SetStAnimReverse] = useState(false)
+    let StAnimReverse = (progressScreen.section == 'd') ? true: false
 
-    const [StageAnimation, setStageAnimation] = useState(null)
+    let StageAnimation
+
+    if(progressScreen.status && progressScreen.section) {
+        StageAnimation = {
+            'type': 'click',
+            'reverse': StAnimReverse,
+            'objects': [
+                {'ref': GroupRefs.group1, 'startPosition': [0, 0, 0], 'endPosition': [0, 75, 0]},
+                {'ref': GroupRefs.group2, 'startPosition': [0, 0, 0], 'endPosition': [0, 105, 0]},
+                {'ref': LineRefs.line1, 'line': true, 'startPosition': [38, 43, -52], 'endPosition': [38, 153, -52]},
+                {'ref': LineRefs.line2, 'line': true, 'startPosition': [38, 43, -105], 'endPosition': [38, 153, -105]},
+                {'ref': LineRefs.line3, 'line': true, 'startPosition': [169, 31, -52], 'endPosition': [169, 141, -52]},
+                {'ref': LineRefs.line4, 'line': true, 'startPosition': [169, 31, -105], 'endPosition': [169, 141, -105]},
+            ]
+            }
+    }
 
     //Animation Starts
-            const [progress, setProgress] = useState(0)
+            let progress = (StAnimReverse) ? 1 : 0
             const step = .02
+
+            const checkScreenSection = (progressScreen.section == 'c' || progressScreen.section == 'd') ? true : false
     
             useFrame(() => {
                 
-                if(StageAnimation) {
+                if(progressScreen.status && checkScreenSection && StageAnimation) {
                     
                     const _progressExpression1 = (!StAnimReverse && progress < 1) ? true : false
                     const _progressExpression2 = (StAnimReverse && progress > 0) ? true : false
@@ -73,36 +90,18 @@ const ExplosionGroup = () => {
                             keyObject.ref.current.position.z = CountMovement(2)
                         }
                     })
-                        setProgress((!StAnimReverse) ? progress + step : progress - step)
+                    progress = (!StAnimReverse) ? progress + step : progress - step
 
                     } else {
-                        setStageAnimation(null)
-                        SetStAnimReverse(!StAnimReverse)
+                        StageAnimation = null
                     }
                 }
             })
     //Animation End
 
-    return(
-        <group ref={_ExplosionGroup} onClick={ 
-            () => {
-                
-                setStageAnimation({
-                    'type': 'click',
-                    'reverse': StAnimReverse,
-                    'objects': [
-                        {'ref': GroupRefs.group1, 'startPosition': [0, 0, 0], 'endPosition': [0, 75, 0]},
-                        {'ref': GroupRefs.group2, 'startPosition': [0, 0, 0], 'endPosition': [0, 105, 0]},
-                        {'ref': LineRefs.line1, 'line': true, 'startPosition': [38, 43, -52], 'endPosition': [38, 153, -52]},
-                        {'ref': LineRefs.line2, 'line': true, 'startPosition': [38, 43, -105], 'endPosition': [38, 153, -105]},
-                        {'ref': LineRefs.line3, 'line': true, 'startPosition': [169, 31, -52], 'endPosition': [169, 141, -52]},
-                        {'ref': LineRefs.line4, 'line': true, 'startPosition': [169, 31, -105], 'endPosition': [169, 141, -105]},
-                    ]
-                    }) 
 
-                setProgress((StAnimReverse) ? 1 : 0)
-                }
-        }>
+    return(
+        <group ref={_ExplosionGroup} >
             
             
 

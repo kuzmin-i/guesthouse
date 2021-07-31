@@ -49,6 +49,7 @@ export default function BWindowsBlock1(props) {
 
   return (
     <group ref={group} {...props} dispose={null}>
+      
       <mesh
         geometry={nodes.Glass.geometry}
         rotation={[Math.PI / 2, 0, 0]}

@@ -26,6 +26,7 @@ import BWindowsBlock1 from './ThreeBlocks/BWindowsBlock1'
 import BPlatform from './ThreeBlocks/BPlatform'
 import BGround from './ThreeBlocks/BGround'
 import BMan from './ThreeBlocks/BMan'
+import SkyBox from './ThreeBlocks/SkyBox'
 
 import Effects from './ThreeBlocks/Effects'
 
@@ -34,85 +35,38 @@ import Rad3 from './Functions/Rad3'
 import ToRefsObject from './Functions/ToRefsObject'
 import BCube1 from './ThreeBlocks/BCube1';
 
-function SkyBox() {
-    const { scene } = useThree();
-    const loader = new CubeTextureLoader();
-    // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
-    const texture = loader.load([
-      "/env/1.jpg",
-      "/env/2.jpg",
-      "/env/3.jpg",
-      "/env/4.jpg",
-      "/env/5.jpg",
-      "/env/6.jpg"
-    ]);
-  
-    // Set the scene background property to the resulting texture.
-    texture.encoding = THREE.sRGBEncoding;
-    scene.background = texture;
-    return null;
-}
-
-// Geometry
-function Sphere() {
-    const { scene, gl } = useThree();
-    // The cubeRenderTarget is used to generate a texture for the reflective sphere.
-    // It must be updated on each frame in order to track camera movement and other changes.
-    const cubeRenderTarget = new WebGLCubeRenderTarget(256, {
-      format: RGBFormat,
-      generateMipmaps: true,
-      minFilter: LinearMipmapLinearFilter
-    });
-    const cubeCamera = new CubeCamera(40, 1000, cubeRenderTarget);
-    cubeCamera.position.set(110, 30, -70);
-    scene.add(cubeCamera);
-  
-    // Update the cubeCamera with current renderer and scene.
-    useFrame(() => cubeCamera.update(gl, scene));
-  
-    return (
-      <mesh visible position={[110, 30, -70]} rotation={[0, 0, 0]} castShadow>
-        <sphereGeometry attach="geometry" args={[50, 32, 42]} />
-        <meshBasicMaterial
-          attach="material"
-          envMap={cubeCamera.renderTarget.texture}
-          color="white"
-          roughness={0.1}
-          metalness={1}
-        />
-      </mesh>
-    );
-  }
 
 
-const Scene = ({data, cameraLoc, refs, response}) => {
+
+const Scene = ({data, cameraLoc, progressScreen}) => {
 
     const [OrbitParam, setOrbitParam] = useState(true)
 
     const envProps = {background: false}
 
-    const AltCamera = useRef()    
-
+    const AltCamera = useRef()  
+    
 
     return(
         <>
         <Canvas className="map" shadows colorManagement>
-            <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
-            <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} response={response} ref={AltCamera}/>
-
-            <Lights data={data}/>
+            
+        
+        
             
             
-            
-            
-            
+      
             
 
             <Suspense fallback={null}>
+                <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
+                <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} ref={AltCamera} progressScreen={progressScreen}/>
+                <SkyBox/>
+                <Lights data={data}/>
 
                 <Environment background={false} files="/1/textures/adams_place_bridge_1k.hdr" />
                 
-                <SkyBox />
+                
                 
                 <BPlatform/>
                 <BGround/>
@@ -124,16 +78,14 @@ const Scene = ({data, cameraLoc, refs, response}) => {
                 <BDoorBlock/>
                 <BWindowsBlock1/>
 
-                <BCube1/>
-
-                <ExplosionGroup/>
+                <ExplosionGroup progressScreen={progressScreen}/>
                 
-
+                
                 
             </Suspense>
 
+            
             <Effects />
-
         
       </Canvas>
       <Loader

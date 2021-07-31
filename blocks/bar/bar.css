@@ -1,0 +1,22 @@
+@import './link/bar__link.css';
+@import './vl/bar__vl.css';
+
+.bar {
+    position: fixed;
+    z-index: 6000;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 510px;
+    height: 20px;
+    margin-top: 40px;
+    padding-left: 60px;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}

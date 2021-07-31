@@ -1,9 +1,11 @@
-.screens__block {
+.blocka__cover {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 100%;
+    width: 510px;
+    max-width: 510px;
+    padding-left: 60px;
     height: 100vh;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

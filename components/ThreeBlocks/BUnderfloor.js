@@ -11,8 +11,6 @@ const BUnderfloor = React.forwardRef((props, ref) => {
 
   let _geometry = nodes.Underplane_2.geometry
 
-  console.log(_geometry)
-
   return (
     <group ref={ref} {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>

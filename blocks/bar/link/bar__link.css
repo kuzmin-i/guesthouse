@@ -1,0 +1,12 @@
+.bar__link {
+    padding-right: 16px;
+}
+
+.bar__link:hover {
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.bar__link.selected {
+    text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+@import './btn/blockb__btn.css';
+@import './btnicon/blockb__btnicon.css';
+@import './btnlist/blockb__btnlist.css';
+@import './link/blockb__link.css';
+@import './btnframe/blockb__btnframe.css';
+
+.blockb {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 48px;
+    margin: auto auto 50px;
+}
+
+.blockb.hidden {
+    display: none;
+}
+

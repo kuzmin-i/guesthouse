@@ -1,2 +1,5 @@
-@import './screens/screens.css';
+@import './layout/layout.css';
 @import './map/map.css';
+@import './bar/bar.css';
+@import './blocka/blocka.css';
+@import './blockb/blockb.css';

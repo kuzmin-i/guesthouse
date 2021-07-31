@@ -3,7 +3,7 @@ import React from 'react'
 
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber' 
-import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import { PerspectiveCamera, OrbitControls, TrackballControls } from '@react-three/drei'
 
 import * as THREE from 'three';
 
@@ -11,56 +11,122 @@ import * as THREE from 'three';
 import CountPosDifference from '../Functions/CountPosDifference'
 
 
-import BMan from './BMan'
+const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
 
-const Cameras = React.forwardRef(({OrbitParam, response}, ref) => {
     const myCamera = useRef()
 
+    // Initial Camera and OrbitTarget Positions
     const CameraAnimCoord = [
-        {'position': [-9.43, 9.67, 50.5], 'rotation': [0.185, -0.47, 0.08]},
-        {'position': [256.2366685896037, 112.19251084415639, 75.41435492681605], 'rotation': [-0.3462307333686365, 0.8841013859965784, 0.2720759213944849]}
+        {'position': [-19.43, 9.67, 50.5]},
+        {'position': [110.43, 14.67, 80.5]},
+        {'position': [197.98, 132.32, 62.49]},
+        {'position': [54.56, 39.43, -63.90]},
+        {'position': [119.66, 18.16, -98.15]},
+        {'position': [163.00, 18.46, -30.00]}
       ]
+
+    const TargetAnimCoord = [[15, 18, 3], [110, 23, 3], [146.9, 104.88, -19.8], [47.64, 40.18, -75.61], [139.51, 14.73, -82.99], [125.98, 18.46, -21.34]]
+
+    const CameraLocStatus = (progressScreen.section != 'a' && ref.current) ? [ref.current.position.x, ref.current.position.y, ref.current.position.z] : CameraAnimCoord[0]
+    let CameraLoc = CameraLocStatus
+
+    const OrbitLocStatus = (progressScreen.section != 'a' && myCamera.current) ? [myCamera.current.target.x, myCamera.current.target.y, myCamera.current.target.z] : TargetAnimCoord[0]
+    let OrbitLoc = OrbitLocStatus
+    //end
+
     
-    const [CameraLoc, setCameraLoc] = useState(CameraAnimCoord[0])
+
+    
 
         let progress = 0
         let step = .02
 
         
 
-        /*useFrame(() => {
-        if(response) {
-        if(response.index == 0 && response.direction == 'down') {
-          if(progress < 1) {
+    let UpdCameraPosition = null
+    let UpdDif3Pos = null
 
-            progress += step
-            const crvProgress = 1 - Math.cos((progress * Math.PI) / 2) 
+    let UpdTargetPos = null
+    let UpdDif3TargetPos = null
 
-            const Vector3Loc = {
-              'position': CountPosDifference(CameraAnimCoord[response.index].position, CameraAnimCoord[response.index+1].position),
-              'rotation': CountPosDifference(CameraAnimCoord[response.index].rotation, CameraAnimCoord[response.index+1].rotation)
-            }
 
-            const CountMovement = (PosOrRot, i) => {
-              return CameraAnimCoord[response.index][PosOrRot][i] + Vector3Loc[PosOrRot][i] * crvProgress
-            }
-
-            const V3Pos = [CountMovement('position', 0), CountMovement('position', 1), CountMovement('position', 2)]
-            const V3Rot = [CountMovement('rotation', 0), CountMovement('rotation', 1), CountMovement('rotation', 2)]
-
-            const CameraLocUpd = {'position': V3Pos, 'rotation': V3Rot}
-
-            setCameraLoc(CameraLocUpd)
-          }
-        }
+    const AnimEndLoc = {
+      'b': {camera: CameraAnimCoord[1].position, target: TargetAnimCoord[1]},
+      'c': {camera: CameraAnimCoord[2].position, target: TargetAnimCoord[2]},
+      'd': {camera: CameraAnimCoord[1].position, target: TargetAnimCoord[1]},
+      'e': {camera: CameraAnimCoord[3].position, target: TargetAnimCoord[3]},
+      'f': {camera: CameraAnimCoord[4].position, target: TargetAnimCoord[4]},
+      'g': {camera: CameraAnimCoord[1].position, target: TargetAnimCoord[1]},
+      'h': {camera: CameraAnimCoord[5].position, target: TargetAnimCoord[5]},
     }
+
+    useEffect(() => {
+      /*if (isInitialMount.current) {
+        isInitialMount.current = false;
+     } else {
+        if(!progressScreen) {setCameraLoc([ref.current.position.x, ref.current.position.y, ref.current.position.z])}
+     }
+     */
+
+      if(ref.current && progressScreen.section && progressScreen.section != 'a') {
+        UpdCameraPosition = [ref.current.position.x, ref.current.position.y, ref.current.position.z]
+        UpdDif3Pos = CountPosDifference(UpdCameraPosition, AnimEndLoc[progressScreen.section].camera)
+
+        UpdTargetPos = [myCamera.current.target.x, myCamera.current.target.y, myCamera.current.target.z]
+        UpdDif3TargetPos = CountPosDifference(UpdTargetPos, AnimEndLoc[progressScreen.section].target)
+      }
+    })
+    
+    
+   useFrame(() => {
+    console.log('camera')
+    console.log([ref.current.position.x, ref.current.position.y, ref.current.position.z])
+    console.log('target')
+    console.log([myCamera.current.target.x, myCamera.current.target.y, myCamera.current.target.z])
+    
+    const checkProgressScreen = (progressScreen.section != 'a') ? true : false
+    
+    //ref.current.position.x += .1
+     if(!progressScreen.status) {
+       if(progressScreen.section == 'a') {
+        ref.current.position.y += .007
+        ref.current.position.x += .1
+       }
+     } else if(progress <= 1 && UpdDif3Pos && UpdDif3TargetPos && checkProgressScreen) {
+
+        if(UpdCameraPosition && ref.current) {
+        let easeOutProgress = (progress < 0.5) ? 16 * progress * progress * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 5) / 2;
+
+        let UpdCameraStateLoc = UpdDif3Pos.map((key , i) => {
+          return UpdCameraPosition[i] + key * easeOutProgress
         })
-        */
+
+        let UpdTargetPosition = UpdDif3TargetPos.map((key, i) => {
+          return UpdTargetPos[i] + key * easeOutProgress
+        })
+
+        
+
+         
+        ref.current.position.x = UpdCameraStateLoc[0]
+        ref.current.position.y = UpdCameraStateLoc[1]
+        ref.current.position.z = UpdCameraStateLoc[2]
+
+        myCamera.current.target.x = UpdTargetPosition[0]
+        myCamera.current.target.y = UpdTargetPosition[1]
+        myCamera.current.target.z = UpdTargetPosition[2]
+        
+        progress += .012
+          
+
+        }
+     }
+   })
 
     return(
         <>
-        <PerspectiveCamera ref={ref} position={CameraLoc.position} rotation={ CameraLoc.rotation } makeDefault />
-        {OrbitParam && <OrbitControls camera={ref.current} target={new THREE.Vector3(15, 18, 3)} maxDistance={85} />}
+        <PerspectiveCamera ref={ref} position={CameraLoc.position} makeDefault />
+        {OrbitParam && <OrbitControls  ref={myCamera} camera={ref.current} target={new THREE.Vector3(OrbitLoc[0], OrbitLoc[1], OrbitLoc[2])} />}
 
         
         </>

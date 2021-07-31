@@ -1,0 +1,26 @@
+.blockb__link {
+    width: auto;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    height: 100%
+}
+
+.blockb__link.hidden {
+    display: none;
+}
+
+.blockb__link.selected {
+    font-weight: 500;
+}
+
+.blockb__link:hover {
+    background-color: #eee;
+    cursor: pointer
+}

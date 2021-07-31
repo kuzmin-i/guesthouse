@@ -58,34 +58,61 @@ export default function Home() {
 
   const explosionBtnRef = useRef()
 
-  const [TResponse, setTResponse] = useState(null)
+
+  //Block Scroll Progress 
+  const ScreenA = useRef()
+
+  const [displayScreen, setDisplayScreen] = useState(null)
+  const [progressScreen, setProgressScreen] = useState({status: false, section: 'a'})
+
+  const RemoveScreen = () => {
+    setDisplayScreen({display: 'none'})
+    setProgressScreen({status: true, section: 'b'})
+  }
+
+  const openBPanel = (i) => {
+    setProgressScreen({status: false, section: 'b'})
+    setBPanelOpen(i)
+  }
+
+  const openExplosion = () => {
+    setProgressScreen({status: true, section: 'c'})
+  }
+
+  const closeExplosion = () => {
+    setProgressScreen({status: true, section: 'd'})
+  }
+
+  const openMainFacade = () => {
+    setProgressScreen({status: true, section: 'g'})
+  }
+
+  const openBedroom = () => {
+    setProgressScreen({status: true, section: 'e'})
+  }
+
+  const openKitchen = () => {
+    setProgressScreen({status: true, section: 'f'})
+  }
+
+  const openEntranceGroup = () => {
+    setProgressScreen({status: true, section: 'h'})
+  }
 
   useEffect(() => {
-    const scroller = scrollama();
-
-    scroller
-      .setup({
-        step: ".screens__block",
-        progress: true,
-        offset: 0
-      })
-      .onStepEnter((_response) => {
-        // { element, index, direction }
-      })
-      .onStepProgress((_response) => {
-        // { element, index, direction }
-        
-      })
-      .onStepExit((_response) => {
-        // { element, index, direction }
-        
-       
-      })
-
-    // setup resize event
-    window.addEventListener("resize", scroller.resize)
+    console.log('Ipd')
+    console.log(progressScreen)
   })
 
+  // Block B Panel
+
+  const [BPanelOpen, setBPanelOpen] = useState(1)
+
+
+  let checkBPanelEvent1, checkBPanelEvent2
+
+  if(BPanelOpen != 1) { checkBPanelEvent1 = {onClick: () => openBPanel(1)} } else { checkBPanelEvent1 = false }
+  if(BPanelOpen != 2) { checkBPanelEvent2 = {onClick: () => openBPanel(2)} } else { checkBPanelEvent2 = false }
 
   return (
     <div className={styles.container}>
@@ -94,56 +121,70 @@ export default function Home() {
 
         
       </DatGui>
-    <div style={{width: '100vw', height: '100vh', backgroundColor: '#C2D1BE'}}>
+    <div style={{backgroundColor: '#C2D1BE'}} className={(!displayScreen) ? "layout a" : "layout b"}>
     
-      <Scene data={data} refs={{'explosion': explosionBtnRef}} response={TResponse}/>
+      <div className="map"><Scene data={data} progressScreen={ progressScreen }/></div>
 
-      <div className="screens" style={{display: 'none'}}>
-        <div className="screens__block" data-step="a">
-          <div className="screens__title">
-            Дом с главного ракурса
+      <div className="bar">
+        <div className="bar__link">En</div>
+        <div className="bar__link selected">Ru</div>
+        <div className="bar__vl"/>
+        <div className="bar__link">О проекте</div>
+      </div>
+
+      <div className={ (!displayScreen) ? "blocka" : "blocka hidden"}>
+        <div className="blocka__cover">
+          <div className="blocka__title">
+            Гостевой дом&nbsp;на Юге
           </div>
-          <div className="screens__content">
-            Opprinnelig ble planten dyrket i varmere strøk, spesielt i Asia, 
-            Nord-Afrika og Mellom-Amerika, og der dyrkes det fortsatt mye. 
-            Hasjen som beslaglegges i Norge kommer stort sett fra Marokko 
-            og smugles hit via Spania og Nederland, men en stadig større del 
-            av den cannabisen som brukes i Europa er også dyrket her. Også i 
-            Norge er det avdekket flere cannabisplantasjer.
+          <div className="blocka__description">
+            В&nbsp;первую минуту после пробуждения глаз ловит 
+            панораму черноморского побережья с&nbsp;видом на&nbsp;море
+            и&nbsp;луга, стелющиеся по&nbsp;горному склону до&nbsp;самого 
+            берега.
+            <br/><br/>
+            Гость еще лежит в&nbsp;постели, но&nbsp;уже предчувствует 
+            прогулку, наполненную ароматными запахами, бризом 
+            и&nbsp;стрёкотом кузнечиков. На&nbsp;кухне внизу шипит пар 
+            из&nbsp;кофемашины. Гость возвращается с&nbsp;чашкой, садится 
+            на&nbsp;кровать и&nbsp;провожает остаток утра, потягивая кофе 
+            и&nbsp;глядя из&nbsp;окна вниз, на&nbsp;склон, где уже резвятся дети.
           </div>
-          <div className="screens__btn" ref={ explosionBtnRef }>
-            Show Explosion
-          </div>
-        </div>
-        <div className="screens__block" data-step="b">
-          <div className="screens__title">
-            Взрыв-схема
-          </div>
-          <div className="screens__content">
-            Mange tror kanskje at alle har prøvd cannabis, og i noen miljøer 
-            er det nok mer vanlig enn i andre. Undersøkelser blant ungdom 
-            viser at 91 % ikke har prøvd cannabis. Ungdata-undersøkelsen 
-            (2020) viser at på ungdomstrinnet har 5 % av guttene og 3 % av 
-            jentene prøvd cannabis siste året. På videregående er det flere 
-            som sier at de har prøvd; 19 % av guttene og 11 % av jentene 
-            svarer at de har prøvd siste året. For Oslo (2018) er tallene 
-            høyere enn ellers i landet og på VG3 i Oslo har 38 % av guttene 
-            og 23 % av jentene prøvd cannabis. Ifølge en europeisk 
-            skoleundersøkelse er norske ungdommers bruk av cannabis blant 
-            det laveste i Europa.
+          <div className="blocka__btn" ref={ explosionBtnRef } onClick={ () => RemoveScreen() }>
+            Перейти к модели
           </div>
         </div>
-        <div className="screens__block" data-step="c">
-          <div className="screens__title">
-            Дополнительный ракурс
+      </div>
+
+      <div className={ (displayScreen) ? "blockb" : "blockb hidden"}>
+        <div className="blockb__btn" {...checkBPanelEvent1}>
+          <div className="blockb__btnicon view"/>
+          <div className={(BPanelOpen != 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
+            <div className={(BPanelOpen != 1) ? "blockb__btnframe-1" : "blockb__btnframe-1 hidden"}>
+              <div className="blockb__link">Формат обзора</div>
+            </div>
           </div>
-          <div className="screens__content">
-            Cannabis kan være skadelig for hjernen, særlig for en ung 
-            hjerne i utvikling. Normalt er ikke hjernen ferdig utviklet 
-            før du nærmer deg 25 år. Forskere er enige om at en hjerne 
-            i utvikling ikke bør utsettes for cannabis. Bruk av cannabis 
-            kan øke risikoen for depresjon og angst, særlig for sårbare 
-            personer og dersom man begynner å bruke i ung alder.
+          <div className={(BPanelOpen == 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
+            <div className={(BPanelOpen == 1) ? "blockb__btnframe" : "blockb__btnframe hidden"}>
+              <div className="blockb__link selected" onClick = { () => closeExplosion() }>Общий</div>
+              <div className="blockb__link" onClick={ () => openExplosion() }>Взрыв&nbsp;схема</div>
+            </div>
+          </div>
+        </div>
+        <div className="blockb__btn" {...checkBPanelEvent2}>
+          <div className="blockb__btnicon panorama"/>
+          <div className={(BPanelOpen != 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
+            <div className={(BPanelOpen != 2) ? "blockb__btnframe-1" : "blockb__btnframe-1 hidden"}>
+              <div className="blockb__link">Видовые&nbsp;точки</div>
+            </div>
+          </div>
+          <div className={(BPanelOpen == 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
+            <div className={(BPanelOpen == 2) ? "blockb__btnframe" : "blockb__btnframe hidden"}>
+              <div className="blockb__link selected" onClick={ () => openMainFacade() }>Главный&nbsp;фасад</div>
+              <div className="blockb__link" onClick={ () => openBedroom() }>Спальная</div>
+              <div className="blockb__link" onClick={ () => openKitchen() }>Столовая</div>
+              <div className="blockb__link" onClick={ () => openEntranceGroup() }>Входная&nbsp;группа</div>
+            </div>
           </div>
         </div>
       </div>

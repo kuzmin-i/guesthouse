@@ -1,0 +1,18 @@
+.blockb__btnicon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    mix-blend-mode: multiply;
+}
+
+.blockb__btnicon.view {
+    background-image: url('/icons/view.svg');
+    background-position: 0px 0px;
+    background-size: auto;
+}
+
+.blockb__btnicon.panorama {
+    background-image: url('/icons/panorama.svg');
+    background-position: 0px 0px;
+    background-size: auto;
+}

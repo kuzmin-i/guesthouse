@@ -1,16 +1,16 @@
-.screens__btn {
-    width: 200px;
-    margin-top: 24px;
+.blocka__btn {
+    width: 220px;
+    margin-top: 36px;
     padding: 14px 30px;
     border: 2px solid #000;
     border-radius: 10px;
     background-color: #fff;
     text-align: center;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
-.screens__btn:hover {
+.blocka__btn:hover {
     background-color: #eee;
     cursor: pointer
 }

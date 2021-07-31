@@ -1,0 +1,25 @@
+.blockb__btnframe, .blockb__btnframe-1 {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+}
+
+.blockb__btnframe {
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.blockb__btnframe.hidden, .blockb__btnframe-1.hidden {
+    width: 0px;
+}
+
+.blockb__btnframe-1.hidden {
+    display: none;
+}
