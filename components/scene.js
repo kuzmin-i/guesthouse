@@ -43,11 +43,12 @@ import BCube1 from './ThreeBlocks/BCube1';
 
 const Scene = ({data, cameraLoc, progressScreen}) => {
 
-    const renderTooltip = (props) => (
+    /*const renderTooltip = (props) => (
       <Tooltip id="button-tooltip" {...props}>
         {props.name}
       </Tooltip>
     );
+    */
 
     const [OrbitParam, setOrbitParam] = useState(true)
 
@@ -70,7 +71,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
             <Suspense fallback={null}>
                 <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
 
-                <Html
+                {/*<Html
                   as="div"
                   position={ [149, 18, -40] }
                   occlude
@@ -98,7 +99,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
                     >
                       <div className="gl-pin"></div>
                     </OverlayTrigger>
-                 </Html>
+                 </Html>*/}
 
                 <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} ref={AltCamera} progressScreen={progressScreen}/>
                 <SkyBox/>

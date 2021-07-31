@@ -3,8 +3,8 @@ import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber' 
 import { Line, Html } from '@react-three/drei'
 
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+//import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+//import Tooltip from 'react-bootstrap/Tooltip';
 
 /* Three JS extra components */
 //import Pin from '../ThreeBlocks/Pin'
@@ -17,11 +17,12 @@ import ToRefsObject from '../Functions/ToRefsObject'
 import CountPosDifference from '../Functions/CountPosDifference'
 
 const ExplosionGroup = ({progressScreen}) => {
-    const renderTooltip = (props) => (
+    /*const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
           {props.name}
         </Tooltip>
       );
+      */
 
 
     const GLTFPreRefs = ['partitions', 'roof', 'stairs', 'furniture', 'underfloor']
@@ -124,7 +125,7 @@ const ExplosionGroup = ({progressScreen}) => {
                 <Pin position={ [46, 37, -79] } name="Спальная комната" ref={HtmlRefs.pin3} />
                 <Pin position={ [74, 33, -54] } name="Спальная комната" />
                 */}
-                <Html
+                {/*<Html
                   as="div"
                   position={ [136, 14, -69] }
                   occlude
@@ -167,7 +168,7 @@ const ExplosionGroup = ({progressScreen}) => {
                     >
                       <div className="gl-pin"></div>
                     </OverlayTrigger>
-                 </Html>
+                </Html>*/}
 
                 
             </group>
