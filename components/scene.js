@@ -13,7 +13,7 @@ import {
   } from "three";
 
 /* Three JS extra components */
-//import Pin from './ThreeBlocks/Pin'
+import Pin from './ThreeBlocks/Pin'
 import ModelGLTF from './ThreeBlocks/ModelGLTF'
 import Lights from './ThreeBlocks/Lights'
 import ExplosionGroup from './ThreeBlocks/ExplosionGroup'
@@ -60,6 +60,8 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
 
             <Suspense fallback={null}>
                 <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
+                <Pin position={ [149, 18, -40] } name="Узел углового окна" />
+
                 <Cameras OrbitParam={OrbitParam} cameraLoc={cameraLoc} ref={AltCamera} progressScreen={progressScreen}/>
                 <SkyBox/>
                 <Lights data={data}/>

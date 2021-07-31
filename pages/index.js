@@ -70,8 +70,8 @@ export default function Home() {
     setProgressScreen({status: true, section: 'b'})
   }
 
-  const openBPanel = (i) => {
-    setProgressScreen({status: false, section: 'b'})
+  const openBPanel = (i, check) => {
+    if(!check) {setProgressScreen({status: false, section: 'b'})}
     setBPanelOpen(i)
   }
 
@@ -84,6 +84,7 @@ export default function Home() {
   }
 
   const openMainFacade = () => {
+    console.log('He')
     setProgressScreen({status: true, section: 'g'})
   }
 
@@ -112,7 +113,15 @@ export default function Home() {
   let checkBPanelEvent1, checkBPanelEvent2
 
   if(BPanelOpen != 1) { checkBPanelEvent1 = {onClick: () => openBPanel(1)} } else { checkBPanelEvent1 = false }
-  if(BPanelOpen != 2) { checkBPanelEvent2 = {onClick: () => openBPanel(2)} } else { checkBPanelEvent2 = false }
+  if(BPanelOpen != 2) { checkBPanelEvent2 = {onClick: () => {
+    console.log('section is ' + progressScreen.section)
+    if(progressScreen.section == 'c') { 
+      closeExplosion() 
+      openBPanel(2, true)
+    } else {
+      openBPanel(2)
+    }
+  }} } else { checkBPanelEvent2 = false }
 
   return (
     <div className={styles.container}>
@@ -151,7 +160,7 @@ export default function Home() {
             и&nbsp;глядя из&nbsp;окна вниз, на&nbsp;склон, где уже резвятся дети.
           </div>
           <div className="blocka__btn" ref={ explosionBtnRef } onClick={ () => RemoveScreen() }>
-            Перейти к модели
+            Покрутить модель
           </div>
         </div>
       </div>
@@ -166,8 +175,8 @@ export default function Home() {
           </div>
           <div className={(BPanelOpen == 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
             <div className={(BPanelOpen == 1) ? "blockb__btnframe" : "blockb__btnframe hidden"}>
-              <div className="blockb__link selected" onClick = { () => closeExplosion() }>Общий</div>
-              <div className="blockb__link" onClick={ () => openExplosion() }>Взрыв&nbsp;схема</div>
+              <div className={(progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick = { () => closeExplosion() }>Общий</div>
+              <div className={(progressScreen.section == 'c') ? "blockb__link selected" : "blockb__link"} onClick={ () => openExplosion() }>Взрыв&nbsp;схема</div>
             </div>
           </div>
         </div>
@@ -180,10 +189,10 @@ export default function Home() {
           </div>
           <div className={(BPanelOpen == 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
             <div className={(BPanelOpen == 2) ? "blockb__btnframe" : "blockb__btnframe hidden"}>
-              <div className="blockb__link selected" onClick={ () => openMainFacade() }>Главный&nbsp;фасад</div>
-              <div className="blockb__link" onClick={ () => openBedroom() }>Спальная</div>
-              <div className="blockb__link" onClick={ () => openKitchen() }>Столовая</div>
-              <div className="blockb__link" onClick={ () => openEntranceGroup() }>Входная&nbsp;группа</div>
+              <div className={(progressScreen.section == 'g' || progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick={ () => openMainFacade() }>Главный&nbsp;фасад</div>
+              <div className={(progressScreen.section == 'e') ? "blockb__link selected" : "blockb__link"} onClick={ () => openBedroom() }>Спальная</div>
+              <div className={(progressScreen.section == 'f') ? "blockb__link selected" : "blockb__link"} onClick={ () => openKitchen() }>Столовая</div>
+              <div className={(progressScreen.section == 'h') ? "blockb__link selected" : "blockb__link"} onClick={ () => openEntranceGroup() }>Входная&nbsp;группа</div>
             </div>
           </div>
         </div>

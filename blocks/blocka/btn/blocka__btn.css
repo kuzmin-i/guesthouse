@@ -1,8 +1,10 @@
 .blocka__btn {
-    width: 220px;
+    width: 300px;
     margin-top: 36px;
     padding: 14px 30px;
     border: 2px solid #000;
+    background-color: black;
+    color: white;
     border-radius: 10px;
     text-align: center;
     font-size: 16px;
@@ -10,6 +12,7 @@
 }
 
 .blocka__btn:hover {
-    background-color: #eee;
-    cursor: pointer
+    cursor: pointer;
+    background: #1B1B1B;
 }
+
