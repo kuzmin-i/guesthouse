@@ -133,6 +133,7 @@ export default function Home() {
     <div style={{backgroundColor: '#C2D1BE'}} className={(!displayScreen) ? "layout a" : "layout b"}>
     
       <div className="map"><Scene data={data} progressScreen={ progressScreen }/></div>
+      <div style={{height: '100vh', width: '120px', background: 'grey', position: 'absolute', left: '0px', top: '0px'}}/>
 
       <div className="bar">
         <div className="bar__link">En</div>
