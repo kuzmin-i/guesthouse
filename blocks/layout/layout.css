@@ -18,17 +18,17 @@
 
 @media (max-width: 480px) {
     .layout.a {
-        height: 100vh;
+        height: auto;
         min-height: 100vh;
         min-height: -webkit-fill-available;
-        height: -webkit-fill-available;
+        overflow: hidden;
     }
 
     .layout.b {
-        height: 100vh;
+        height: auto;
         min-height: 100vh;
         min-height: -webkit-fill-available;
-        height: -webkit-fill-available;
+        overflow: hidden;
     }
 }
 
