@@ -1,7 +1,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber' 
-import { Line, Html } from '@react-three/drei'
+import { Line } from '@react-three/drei'
 
 //import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 //import Tooltip from 'react-bootstrap/Tooltip';
