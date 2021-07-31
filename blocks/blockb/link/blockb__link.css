@@ -12,6 +12,13 @@
     height: 100%
 }
 
+@media (max-width: 480px) {
+    .blockb__link {
+        padding-left: 8px;
+        padding-right: 8px;
+    } 
+}
+
 .blockb__link.hidden {
     display: none;
 }
