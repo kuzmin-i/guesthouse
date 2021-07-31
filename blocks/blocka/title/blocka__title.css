@@ -5,3 +5,9 @@
     line-height: 86%;
     font-weight: 700;
 }
+
+@media (max-width: 480px) {
+    .blocka__title {
+        font-size: 56px;
+    }
+}

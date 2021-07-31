@@ -18,3 +18,12 @@
     -ms-flex-pack: center;
     justify-content: center;
 }
+
+@media (max-width: 480px) {
+    .blocka__cover {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

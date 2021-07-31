@@ -18,3 +18,11 @@
     display: none;
 }
 
+@media (max-width: 480px) {
+    .blockb {
+        width: 100vw;
+        padding-left: 15px;
+        overflow: scroll;
+    }  
+}
+
