@@ -189,6 +189,7 @@ export default function Home() {
       </div>
 
       <div className={ (displayScreen) ? "blockb" : "blockb hidden"}>
+        <div className="blockb__frame">
         <div className="blockb__btn" {...checkBPanelEvent1}>
           <div className="blockb__btnicon view"/>
           <div className={(BPanelOpen != 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
@@ -219,6 +220,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
     </div>

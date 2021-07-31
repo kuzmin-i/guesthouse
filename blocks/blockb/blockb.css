@@ -3,6 +3,7 @@
 @import './btnlist/blockb__btnlist.css';
 @import './link/blockb__link.css';
 @import './btnframe/blockb__btnframe.css';
+@import './frame/blockb__frame.css';
 
 .blockb {
     position: relative;
@@ -20,7 +21,8 @@
 
 @media (max-width: 480px) {
     .blockb {
-        width: 375px;
+        overflow: scroll;
+        width: 100%;
         padding-left: 20px;
     }  
 }
