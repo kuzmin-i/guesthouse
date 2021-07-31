@@ -11,6 +11,15 @@
     font-family: 'Roboto';
 }
 
+@media (max-width: 480px) {
+    .blocka {
+        height: 100vh;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        height: -webkit-fill-available;
+    }
+}
+
 .blocka.hidden {
     display: none;
 }
