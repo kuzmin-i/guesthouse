@@ -6,8 +6,8 @@
 
 @media (max-width: 480px) {
     .map {
-        height: auto;
-        min-height: 100vh;
+        height: 100%;
+        min-height: 100%;
         min-height: -webkit-fill-available;
     }
 }
