@@ -138,6 +138,7 @@ export default function Home() {
   const [btnFrameScroll, setBtnFrameScroll] = useState(0)
 
   const _blockB = useRef()
+  const _blockA = useRef()
 
   useEffect(() => {
     
@@ -148,6 +149,11 @@ export default function Home() {
 
       _el2.current.style.height = window.innerHeight + 'px'
       _el2.current.style.minHeight = window.innerHeight + 'px'
+
+      if(window.innerWidth <= 480) {
+        _blockA.current.style.height = window.innerHeight + 'px'
+        _blockA.current.style.minHeight = window.innerHeight + 'px'
+      }
 
       setWindowHeight(window.innerHeight + 'px !important')
     }
@@ -177,7 +183,7 @@ export default function Home() {
         <div className="bar__link">О проекте</div>
       </div>
 
-      <div className={ (!displayScreen) ? "blocka" : "blocka hidden"}>
+      <div ref={_blockA} className={ (!displayScreen) ? "blocka" : "blocka hidden"}>
         <div className="blocka__cover">
           <div className="blocka__title">
             Гостевой дом&nbsp;на Юге
