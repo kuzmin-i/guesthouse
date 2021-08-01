@@ -153,9 +153,7 @@ export default function Home() {
     }
 
     _mobile = (window.innerWidth <= 480) ? true : false
-    if(_mobile) {
-      _blockB.current.scrollTo(btnFrameScroll, 0);
-    }
+    
 
   })
 
