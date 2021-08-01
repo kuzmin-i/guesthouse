@@ -60,7 +60,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
 
     useEffect(() => {
       if(window.innerWidth <= 480) {
-        setFogIntensity(1000)
+        setFogIntensity(900)
       }
     })
 
