@@ -110,8 +110,15 @@ export default function Home() {
 
   let checkBPanelEvent1, checkBPanelEvent2
 
-  if(BPanelOpen != 1) { checkBPanelEvent1 = {onClick: () => openBPanel(1)} } else { checkBPanelEvent1 = false }
+  if(BPanelOpen != 1) { checkBPanelEvent1 = {onClick: () => {
+    if(window.innerWidth <= 480) { setBtnFrameScroll(_btnFrame.current.getBoundingClientRect().left)  }
+    openBPanel(1)}
+  } } else { checkBPanelEvent1 = false }
   if(BPanelOpen != 2) { checkBPanelEvent2 = {onClick: () => {
+    if(window.innerWidth <= 480) { 
+      console.log(_btnFrame.current)
+      setBtnFrameScroll(_btnFrame.current.getBoundingClientRect().left)  }
+
     console.log('section is ' + progressScreen.section)
     if(progressScreen.section == 'c') { 
       closeExplosion() 
@@ -127,8 +134,12 @@ export default function Home() {
   const _el1 = useRef()
   const _el2 = useRef()
 
+  const _btnFrame = useRef()
+  const [btnFrameScroll, setBtnFrameScroll] = useState(0)
+
+  const _blockB = useRef()
+
   useEffect(() => {
-    console.log(window.innerHeight)
     
 
     if(window.innerHeight) {
@@ -141,10 +152,14 @@ export default function Home() {
       setWindowHeight(window.innerHeight + 'px !important')
     }
 
-    _mobile = (window.innerWidth) ? true : false
+    _mobile = (window.innerWidth <= 480) ? true : false
+    if(_mobile) {
+      _blockB.current.scrollTo(btnFrameScroll, 0);
+    }
+
   })
 
-  console.log('Hey' + WindowHeight)
+  
 
   return (
     <div ref={_el1} style={{height: WindowHeight, minHeight: WindowHeight}} className={styles.container}>
@@ -188,8 +203,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={ (displayScreen) ? "blockb" : "blockb hidden"}>
-        <div className="blockb__frame">
+      <div ref={_blockB} className={ (displayScreen) ? "blockb" : "blockb hidden"}>
+        <div ref={_btnFrame} className="blockb__frame">
         <div className="blockb__btn" {...checkBPanelEvent1}>
           <div className="blockb__btnicon view"/>
           <div className={(BPanelOpen != 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>

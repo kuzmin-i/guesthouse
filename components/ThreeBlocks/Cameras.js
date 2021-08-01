@@ -91,10 +91,11 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
     
     
    useFrame(() => {
-    console.log('camera')
+    /*console.log('camera')
     console.log([ref.current.position.x, ref.current.position.y, ref.current.position.z])
     console.log('target')
     console.log([myCamera.current.target.x, myCamera.current.target.y, myCamera.current.target.z])
+    */
     
     
     
