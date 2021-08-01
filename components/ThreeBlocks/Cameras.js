@@ -59,13 +59,13 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
         CameraAnimCoord = [
           {'position': [-19.43, 9.67, 50.5]},
           {'position': [110.83, 6.77, 153.97]},
-          {'position': [314.36, 114.37, 174.49]},
+          {'position': [332.46, 118, 175.82]},
           {'position': [54.23, 37.03, -59.39]},
           {'position': [119.66, 18.16, -98.15]},
           {'position': [180.66, 17.2, 4]}
         ]
 
-        TargetAnimCoord = [[15, 18, 3], [110, 23, 3], [149.26, 77.53, -14.20], [49.98, 38.1, -76.45], [139.51, 14.73, -82.99], [125.9, 18.46, -21.3]]
+        TargetAnimCoord = [[15, 18, 13], [110, 23, 3], [158.4, 79.2, -22.5], [49.98, 38.1, -76.45], [139.51, 14.73, -82.99], [125.9, 18.46, -21.3]]
 
       }
 
@@ -91,11 +91,11 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
     
     
    useFrame(() => {
-    /*console.log('camera')
+    console.log('camera')
     console.log([ref.current.position.x, ref.current.position.y, ref.current.position.z])
     console.log('target')
     console.log([myCamera.current.target.x, myCamera.current.target.y, myCamera.current.target.z])
-    */
+    
     
     
     const checkProgressScreen = (progressScreen.section != 'a') ? true : false
