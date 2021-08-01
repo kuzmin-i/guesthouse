@@ -193,12 +193,12 @@ export default function Home() {
         <div className="blockb__btn" {...checkBPanelEvent1}>
           <div className="blockb__btnicon view"/>
           <div className={(BPanelOpen != 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
-            <div className={(BPanelOpen != 1) ? "blockb__btnframe-1" : "blockb__btnframe-1 hidden"}>
+            <div className={(BPanelOpen != 1) ? "blockb__btnframe-1 c1" : "blockb__btnframe-1 hidden"}>
               <div className="blockb__link">Формат обзора</div>
             </div>
           </div>
           <div className={(BPanelOpen == 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
-            <div className={(BPanelOpen == 1) ? "blockb__btnframe" : "blockb__btnframe hidden"}>
+            <div className={(BPanelOpen == 1) ? "blockb__btnframe c1" : "blockb__btnframe hidden"}>
               <div className={(progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick = { () => closeExplosion() }>Общий</div>
               <div className={(progressScreen.section == 'c') ? "blockb__link selected" : "blockb__link"} onClick={ () => openExplosion() }>Взрыв&nbsp;схема</div>
             </div>
@@ -207,12 +207,12 @@ export default function Home() {
         <div className="blockb__btn" {...checkBPanelEvent2}>
           <div className="blockb__btnicon panorama"/>
           <div className={(BPanelOpen != 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
-            <div className={(BPanelOpen != 2) ? "blockb__btnframe-1" : "blockb__btnframe-1 hidden"}>
+            <div className={(BPanelOpen != 2) ? "blockb__btnframe-1 c2" : "blockb__btnframe-1 hidden"}>
               <div className="blockb__link">Видовые&nbsp;точки</div>
             </div>
           </div>
           <div className={(BPanelOpen == 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
-            <div className={(BPanelOpen == 2) ? "blockb__btnframe" : "blockb__btnframe hidden"}>
+            <div className={(BPanelOpen == 2) ? "blockb__btnframe c2" : "blockb__btnframe hidden"}>
               <div className={(progressScreen.section == 'g' || progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick={ () => openMainFacade() }>Главный&nbsp;фасад</div>
               <div className={(progressScreen.section == 'e') ? "blockb__link selected" : "blockb__link"} onClick={ () => openBedroom() }>Спальная</div>
               <div className={(progressScreen.section == 'f') ? "blockb__link selected" : "blockb__link"} onClick={ () => openKitchen() }>Столовая</div>

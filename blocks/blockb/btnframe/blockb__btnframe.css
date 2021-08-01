@@ -23,3 +23,19 @@
 .blockb__btnframe-1.hidden {
     display: none;
 }
+
+.blockb__btnframe.c1 {
+    width: 200px;
+}
+
+.blockb__btnframe.c2 {
+    width: 475px;
+}
+
+.blockb__btnframe-1.c1 {
+    width: 140px;
+}
+
+.blockb__btnframe-1.c2 {
+    width: 140px;
+}
