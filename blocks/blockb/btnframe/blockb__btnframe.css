@@ -39,3 +39,13 @@
 .blockb__btnframe-1.c2 {
     width: 140px;
 }
+
+@media (max-width: 480px) {
+    .blockb__btnframe.c1 {
+        width: 181px;
+    }  
+
+    .blockb__btnframe.c2 {
+        width: 444px;
+    }
+}
