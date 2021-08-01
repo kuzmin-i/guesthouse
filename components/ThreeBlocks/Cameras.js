@@ -16,7 +16,7 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
     const myCamera = useRef()
 
     // Initial Camera and OrbitTarget Positions
-    const CameraAnimCoord = [
+    let CameraAnimCoord = [
         {'position': [-19.43, 9.67, 50.5]},
         {'position': [110.43, 14.67, 80.5]},
         {'position': [197.98, 132.32, 62.49]},
@@ -25,7 +25,9 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
         {'position': [163.00, 18.46, -30.00]}
       ]
 
-    const TargetAnimCoord = [[15, 18, 3], [110, 23, 3], [146.9, 104.88, -19.8], [47.64, 40.18, -75.61], [139.51, 14.73, -82.99], [125.98, 18.46, -21.34]]
+    let TargetAnimCoord = [[15, 18, 3], [110, 23, 3], [146.9, 104.88, -19.8], [47.64, 40.18, -75.61], [139.51, 14.73, -82.99], [125.98, 18.46, -21.34]]
+
+    
 
     const CameraLocStatus = (progressScreen.section != 'a' && ref.current) ? [ref.current.position.x, ref.current.position.y, ref.current.position.z] : CameraAnimCoord[0]
     let CameraLoc = CameraLocStatus
@@ -50,6 +52,24 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
     let UpdDif3TargetPos = null
 
 
+
+    useEffect(() => {
+
+      if(window.innerWidth <= 480) {
+        CameraAnimCoord = [
+          {'position': [-19.43, 9.67, 50.5]},
+          {'position': [110.83, 6.77, 153.97]},
+          {'position': [314.36, 114.37, 174.49]},
+          {'position': [54.23, 37.03, -59.39]},
+          {'position': [119.66, 18.16, -98.15]},
+          {'position': [180.66, 17.2, 4]}
+        ]
+
+        TargetAnimCoord = [[15, 18, 3], [110, 23, 3], [149.26, 77.53, -14.20], [49.98, 38.1, -76.45], [139.51, 14.73, -82.99], [125.9, 18.46, -21.3]]
+
+      }
+
+
     const AnimEndLoc = {
       'b': {camera: CameraAnimCoord[1].position, target: TargetAnimCoord[1]},
       'c': {camera: CameraAnimCoord[2].position, target: TargetAnimCoord[2]},
@@ -59,14 +79,6 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
       'g': {camera: CameraAnimCoord[1].position, target: TargetAnimCoord[1]},
       'h': {camera: CameraAnimCoord[5].position, target: TargetAnimCoord[5]},
     }
-
-    useEffect(() => {
-      /*if (isInitialMount.current) {
-        isInitialMount.current = false;
-     } else {
-        if(!progressScreen) {setCameraLoc([ref.current.position.x, ref.current.position.y, ref.current.position.z])}
-     }
-     */
 
       if(ref.current && progressScreen.section && progressScreen.section != 'a') {
         UpdCameraPosition = [ref.current.position.x, ref.current.position.y, ref.current.position.z]
@@ -84,6 +96,7 @@ const Cameras = React.forwardRef(({OrbitParam, progressScreen}, ref) => {
     console.log('target')
     console.log([myCamera.current.target.x, myCamera.current.target.y, myCamera.current.target.z])
     */
+    
     
     const checkProgressScreen = (progressScreen.section != 'a') ? true : false
     

@@ -56,6 +56,13 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
 
     const AltCamera = useRef()  
     
+    const [fogIntensity, setFogIntensity] = useState(500)
+
+    useEffect(() => {
+      if(window.innerWidth <= 480) {
+        setFogIntensity(1000)
+      }
+    })
 
     return(
         <>
@@ -69,7 +76,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
             
 
             <Suspense fallback={null}>
-                <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, 500]} />
+                <fog attach="fog" color="#FFF7F2" args={["#FFEDE1", 0, fogIntensity]} />
 
                 {/*<Html
                   as="div"
