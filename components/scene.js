@@ -56,7 +56,7 @@ const Scene = ({data, cameraLoc, progressScreen}) => {
 
     const AltCamera = useRef()  
     
-    const [fogIntensity, setFogIntensity] = useState(500)
+    const [fogIntensity, setFogIntensity] = useState(550)
 
     useEffect(() => {
       if(window.innerWidth <= 480) {

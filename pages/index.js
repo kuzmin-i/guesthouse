@@ -16,6 +16,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CountPosDifference from '../components/Functions/CountPosDifference'
 import { Reflector } from '@react-three/drei'
 
+import {mainpage} from '../data/mainpage'
+
 
 export default function Home() {
 
@@ -59,6 +61,8 @@ export default function Home() {
 
   const explosionBtnRef = useRef()
 
+  const [language, setLanguage] = useState('ru')
+
 
   //Block Scroll Progress 
   const ScreenA = useRef()
@@ -85,7 +89,6 @@ export default function Home() {
   }
 
   const openMainFacade = () => {
-    console.log('He')
     setProgressScreen({status: true, section: 'g'})
   }
 
@@ -142,7 +145,7 @@ export default function Home() {
 
   useEffect(() => {
     
-
+    const changeWindowInnerHeight = () => {
     if(window.innerHeight) {
       _el1.current.style.height = window.innerHeight + 'px'
       _el1.current.style.minHeight = window.innerHeight + 'px'
@@ -154,14 +157,21 @@ export default function Home() {
         _blockA.current.style.height = window.innerHeight + 'px'
         _blockA.current.style.minHeight = window.innerHeight + 'px'
       }
+    }
 
-      setWindowHeight(window.innerHeight + 'px !important')
+    setWindowHeight(window.innerHeight + 'px !important')
+
+    window.addEventListener('resize', changeWindowInnerHeight);
+    changeWindowInnerHeight()
+
+    return () => window.removeEventListener('resize', changeWindowInnerHeight);
+    
     }
 
     _mobile = (window.innerWidth <= 480) ? true : false
     
 
-  })
+  }, [])
 
   
 
@@ -177,32 +187,22 @@ export default function Home() {
       <div className="map"><Scene data={data} progressScreen={ progressScreen }/></div>
 
       <div className="bar">
-        <div className="bar__link">En</div>
-        <div className="bar__link selected">Ru</div>
+        <div className={(language == 'en') ? "bar__link selected" : "bar__link"} onClick={() => setLanguage('en')}>En</div>
+        <div className={(language == 'ru') ? "bar__link selected" : "bar__link"} onClick={() => setLanguage('ru')}>Ru</div>
         <div className="bar__vl"/>
-        <div className="bar__link">О проекте</div>
+        <div className="bar__link">{ mainpage.aboutproject[language] }</div>
       </div>
 
       <div ref={_blockA} className={ (!displayScreen) ? "blocka" : "blocka hidden"}>
         <div className="blocka__cover">
           <div className="blocka__title">
-            Гостевой дом&nbsp;на Юге
+            { mainpage.title[language] }
           </div>
           <div className="blocka__description">
-            В&nbsp;первую минуту после пробуждения глаз ловит 
-            панораму черноморского побережья с&nbsp;видом на&nbsp;море
-            и&nbsp;луга, стелющиеся по&nbsp;горному склону до&nbsp;самого 
-            берега.
-            <br/><br/>
-            Гость еще лежит в&nbsp;постели, но&nbsp;уже предчувствует 
-            прогулку, наполненную ароматными запахами, бризом 
-            и&nbsp;стрёкотом кузнечиков. На&nbsp;кухне внизу шипит пар 
-            из&nbsp;кофемашины. Гость возвращается с&nbsp;чашкой, садится 
-            на&nbsp;кровать и&nbsp;провожает остаток утра, потягивая кофе 
-            и&nbsp;глядя из&nbsp;окна вниз, на&nbsp;склон, где уже резвятся дети.
+            { mainpage.description[language] }
           </div>
           <div className="blocka__btn" ref={ explosionBtnRef } onClick={ () => RemoveScreen() }>
-            Покрутить модель
+          { mainpage.exploremodel[language] }
           </div>
         </div>
       </div>
@@ -213,13 +213,13 @@ export default function Home() {
           <div className="blockb__btnicon view"/>
           <div className={(BPanelOpen != 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
             <div className={(BPanelOpen != 1) ? "blockb__btnframe-1 c1" : "blockb__btnframe-1 hidden"}>
-              <div className="blockb__link">Формат обзора</div>
+              <div className="blockb__link">{ mainpage.disclosure[language] }</div>
             </div>
           </div>
           <div className={(BPanelOpen == 1) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
-            <div className={(BPanelOpen == 1) ? "blockb__btnframe c1" : "blockb__btnframe hidden"}>
-              <div className={(progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick = { () => closeExplosion() }>Общий</div>
-              <div className={(progressScreen.section == 'c') ? "blockb__link selected" : "blockb__link"} onClick={ () => openExplosion() }>Взрыв&nbsp;схема</div>
+            <div className={(BPanelOpen == 1) ? `blockb__btnframe c1 ${language}` : "blockb__btnframe hidden"}>
+              <div className={(progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick = { () => closeExplosion() }>{ mainpage.common[language] }</div>
+              <div className={(progressScreen.section == 'c') ? "blockb__link selected" : "blockb__link"} onClick={ () => openExplosion() }>{ mainpage.exploded[language] }</div>
             </div>
           </div>
         </div>
@@ -227,15 +227,15 @@ export default function Home() {
           <div className="blockb__btnicon panorama"/>
           <div className={(BPanelOpen != 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
             <div className={(BPanelOpen != 2) ? "blockb__btnframe-1 c2" : "blockb__btnframe-1 hidden"}>
-              <div className="blockb__link">Видовые&nbsp;точки</div>
+              <div className="blockb__link">{ mainpage.viewpoints[language] }</div>
             </div>
           </div>
           <div className={(BPanelOpen == 2) ? "blockb__btnlist" : "blockb__btnlist hidden"}>
-            <div className={(BPanelOpen == 2) ? "blockb__btnframe c2" : "blockb__btnframe hidden"}>
-              <div className={(progressScreen.section == 'g' || progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick={ () => openMainFacade() }>Главный&nbsp;фасад</div>
-              <div className={(progressScreen.section == 'e') ? "blockb__link selected" : "blockb__link"} onClick={ () => openBedroom() }>Спальная</div>
-              <div className={(progressScreen.section == 'f') ? "blockb__link selected" : "blockb__link"} onClick={ () => openKitchen() }>Столовая</div>
-              <div className={(progressScreen.section == 'h') ? "blockb__link selected" : "blockb__link"} onClick={ () => openEntranceGroup() }>Входная&nbsp;группа</div>
+            <div className={(BPanelOpen == 2) ? `blockb__btnframe c2 ${language}` : "blockb__btnframe hidden"}>
+              <div className={(progressScreen.section == 'g' || progressScreen.section == 'd' || progressScreen.section == 'b') ? "blockb__link selected" : "blockb__link"} onClick={ () => openMainFacade() }>{ mainpage.mainfacade[language] }</div>
+              <div className={(progressScreen.section == 'e') ? "blockb__link selected" : "blockb__link"} onClick={ () => openBedroom() }>{ mainpage.bedroom[language] }</div>
+              <div className={(progressScreen.section == 'f') ? "blockb__link selected" : "blockb__link"} onClick={ () => openKitchen() }>{ mainpage.kitchen[language] }</div>
+              <div className={(progressScreen.section == 'h') ? "blockb__link selected" : "blockb__link"} onClick={ () => openEntranceGroup() }>{ mainpage.entrance[language] }</div>
             </div>
           </div>
         </div>
