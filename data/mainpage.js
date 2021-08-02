@@ -68,7 +68,7 @@ export const mainpage = {
         en: (<>Keyboard shortcuts</>)
     },
     press: {
-        ru: (<>Нажмите</>),
+        ru: (<>Зажмите</>),
         en: (<>Press</>)
     },
     and: {
@@ -76,12 +76,12 @@ export const mainpage = {
         en: (<>and</>)
     },
     todrag: {
-        ru: (<>для перемещения</>),
-        en: (<>to drag</>)
+        ru: (<>для&nbsp;перемещения</>),
+        en: (<>to&nbsp;drag</>)
     },
     torotate: {
-        ru: (<>для вращения</>),
-        en: (<>to rotate</>)
+        ru: (<>для&nbsp;вращения</>),
+        en: (<>to&nbsp;rotate</>)
     }
 
 }
