@@ -161,12 +161,14 @@ export default function Home() {
 
     setWindowHeight(window.innerHeight + 'px !important')
 
+  }
+
     window.addEventListener('resize', changeWindowInnerHeight);
     changeWindowInnerHeight()
 
     return () => window.removeEventListener('resize', changeWindowInnerHeight);
     
-    }
+    
 
     _mobile = (window.innerWidth <= 480) ? true : false
     
