@@ -1,0 +1,22 @@
+.blockb__tpRow {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    line-height: 100%;
+}
+
+.blockb__tpRow:last-child {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.blockb__tpRow img {
+    padding-left: 6px;
+    padding-right: 6px;
+    opacity: .8;
+}

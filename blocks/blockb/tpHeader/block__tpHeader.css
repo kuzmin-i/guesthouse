@@ -1,0 +1,28 @@
+.block__tpHeader {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #313131;
+}
+
+.block__tpHeader span {
+    margin-left: 20px;
+    opacity: .7;
+}
+
+.block__tpHeader img {
+    margin-right: 20px;
+    opacity: .7;
+    cursor: pointer;
+}

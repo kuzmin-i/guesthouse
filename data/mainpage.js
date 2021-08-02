@@ -62,6 +62,26 @@ export const mainpage = {
     entrance: {
         ru: (<>Входная&nbsp;группа</>),
         en: (<>Entrance&nbsp;group</>)
+    },
+    shortcuts: {
+        ru: (<>Горячие клавиши</>),
+        en: (<>Keyboard shortcuts</>)
+    },
+    press: {
+        ru: (<>Нажмите</>),
+        en: (<>Press</>)
+    },
+    and: {
+        ru: (<>и</>),
+        en: (<>and</>)
+    },
+    todrag: {
+        ru: (<>для перемещения</>),
+        en: (<>to drag</>)
+    },
+    torotate: {
+        ru: (<>для вращения</>),
+        en: (<>to rotate</>)
     }
 
 }

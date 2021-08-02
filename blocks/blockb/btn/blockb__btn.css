@@ -26,11 +26,26 @@
     transition: width 1s ease-in-out;
 }
 
+.blockb__btn.help {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.blockb__btn.help:hover {
+    background-color: #eee;
+    cursor: pointer
+}
+
 @media (max-width: 480px) {
     .blockb__btn {
         padding-right: 20px;
         padding-left: 20px;
         margin-right: 12px;
+    }
+
+    .blockb__btn.help {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 }
 

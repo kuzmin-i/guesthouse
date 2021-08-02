@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react'
 import DatGui, { DatBoolean, DatColor, DatNumber, DatString } from 'react-dat-gui'
 
 import { useFrame } from '@react-three/fiber'
+import Overlay from 'react-bootstrap/Overlay'
+import Tooltip from 'react-bootstrap/Tooltip'
 
 import Scene from '../components/scene'
 
@@ -73,6 +75,7 @@ export default function Home() {
   const RemoveScreen = () => {
     setDisplayScreen({display: 'none'})
     setProgressScreen({status: true, section: 'b'})
+    setShowHelpBtn(true)
   }
 
   const openBPanel = (i, check) => {
@@ -140,8 +143,11 @@ export default function Home() {
   const _btnFrame = useRef()
   const [btnFrameScroll, setBtnFrameScroll] = useState(0)
 
+  const [showHelpBtn, setShowHelpBtn] = useState(false)
+
   const _blockB = useRef()
   const _blockA = useRef()
+  const helpBtn = useRef()
 
   useEffect(() => {
     
@@ -241,6 +247,27 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
+        <div className="blockb__btn help" >
+          <div className="blockb__btnlist">
+            <div className="blockb__btnframe-1">
+              <div ref={helpBtn} className="blockb__link selected" onClick={() => setShowHelpBtn(!showHelpBtn)}>?</div>
+              <Overlay target={helpBtn.current} show={showHelpBtn} placement="top">
+              {(props) => (
+                <Tooltip id="overlay-example" {...props}>
+                  <div className="block__tpHeader"><span>{ mainpage.shortcuts[language] }</span><img src="/icons/closeTP.svg" onClick={() => setShowHelpBtn(false)}/></div>
+                  <div style={{fontSize: '14px', paddingTop: '16px', paddingBottom: '16px', marginLeft: '20px', marginRight: '20px'}}>
+                  <div className="blockb__tpRow">{ mainpage.press[language] } <img src="/icons/shift.svg" style={{width: '60px'}}/> { mainpage.and[language] } <img src="/icons/leftmouse.svg" style={{width: '25px'}}/> { mainpage.todrag[language] }</div>
+                  <div className="blockb__tpRow">{ mainpage.press[language] } <img src="/icons/leftmouse.svg" style={{width: '25px'}}/> { mainpage.torotate[language] }</div>
+                  </div>
+                </Tooltip>
+              )}
+              </Overlay>
+            </div>
+          </div>
+        </div>
+        
+        
       </div>
       </div>
     </div>

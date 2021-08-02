@@ -4,6 +4,7 @@
 @import './link/blockb__link.css';
 @import './btnframe/blockb__btnframe.css';
 @import './frame/blockb__frame.css';
+@import './tpHeader/block__tpHeader.css';
 
 .blockb {
     position: relative;
