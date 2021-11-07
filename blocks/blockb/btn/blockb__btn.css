@@ -3,7 +3,7 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    height: 48px;
+    height: 80px;
     margin-right: 16px;
     padding-right: 24px;
     padding-left: 24px;
@@ -15,7 +15,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 100px;
     background-color: #fff;
     box-shadow: 0 4px 15px -4px rgb(0 0 0 / 38%);
     overflow: hidden;
