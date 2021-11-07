@@ -36,6 +36,8 @@ const BMan = React.forwardRef((props, ref) => {
   )
 })
 
+BMan.displayName = "BMan"
+
 useGLTF.preload('/1/BMan.gltf')
 
 export default BMan

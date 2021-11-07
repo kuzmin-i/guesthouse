@@ -26,6 +26,8 @@ const BUnderfloor = React.forwardRef((props, ref) => {
 }
 )
 
+BUnderfloor.displayName = "BUnderfloor"
+
 useGLTF.preload('/1/BUnderfloor.gltf')
 
 export default BUnderfloor

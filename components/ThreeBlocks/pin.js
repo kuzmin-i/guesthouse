@@ -28,6 +28,8 @@ const Pin = React.forwardRef(({position, name}, ref) => {
     )
 })
 
+Pin.displayName = "Pin"
+
 export default Pin
 
 /*

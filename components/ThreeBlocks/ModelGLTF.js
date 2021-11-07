@@ -36,5 +36,7 @@ const ModelGLTF = React.forwardRef(({model, action, ...props}, ref) => {
   )
 })
 
+ModelGLTF.displayName = "ModelGLTF"
+
 export default ModelGLTF
 

@@ -18,7 +18,7 @@ const BRoof = React.forwardRef((props, ref) => {
   )
 })
 
-
+BRoof.displayName = "BRoof"
 
 useGLTF.preload('/1/BRoof.gltf')
 
